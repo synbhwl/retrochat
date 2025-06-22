@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>retrochat</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="chatmenu">
+        <div class="chatmenu-head">Chats</div>
+        <div class="chat-list-container">
+          <div class="chat-log default-chat" id=0>Meaning of life</div>
+          <div class="chat-log" id="1">Barely Dev server</div>  
+        </div>
+      </div> <!-- chatmenu -->
+      <div class="chatwindow">
+        <div class="chatwindow-head">
+          <div class="chatwindow-head-name">Meaning of life</div>
+          <div class="btns">
+            <button class="mini">-</button>
+            <button class="cross">X</button>
+          </div>
+        </div> <!-- chat window head-->
+        <div class="personality-container">
+          <div>Choose:</div>
+          <div class="personality">
+            <select class="personality-box">
+              <option value=#>personality 1</option>
+              <option value=#>personality 2</option>
+              <option value=#>personality 3</option>
+            </select>
+          </div>
+            <div class="new">
+              <button class="new-btn">New</button>
+            </div>
+        </div>
+        <div class="actual-chat-container">
+           <div class="actual-chat">
+             <div class="start">Hey, what can I help you with?</div>
+             <div class="user">What's the meaning of life? Does it lie in seeking happiness, or is there a deeper purpose we are meant to find?</div>
+             
+          </div>
+        </div><!--  actual chat container -->
+        <div class="prompt-container">
+          <div>Prompt: </div>
+          <div class="prompt-area">
+            <textarea class="prompt-box" placeholder="Start chatting..."></textarea>
+            <button class="send">></button>
+          </div>
+        </div>
+      </div> <!-- chat window -->
+    </div> <!-- container -->
+    <script src="event.js" type="module"></script>
+  </body>
+</html>
