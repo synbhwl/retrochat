@@ -1,9 +1,10 @@
-import {getChats, getCertainChat, addChat, addMessage} from './state.js'
+import {getChats, getCertainChat, addChat, addMessageToList} from './state.js'
 import {addChatBlock, activeChatColor, inactiveChatColor, defaultChat} from "./chatmenu.js"
 import {chatheader} from "./chatheader.js"
+import {showSelectedChat, addMessageDiv} from "./chatbox.js"
 
 // variables initialisation 
-let active = document.querySelector('.default-chat');
+let active = document.querySelector(".default-chat");
 
 // event listners 
 // click new button 
@@ -29,18 +30,35 @@ function matchChatName(){
 	});	
 };
 
+// changes the color of the active chats to navy
 function changeColorOfChatBlock(){
-
 	const chatList = document.querySelector('.chat-list-container');
 	chatList.addEventListener('click', (e)=>{
 		const chatBlock = e.target.closest('.chat-log');
 		if (active && active != chatBlock){
 			inactiveChatColor(active);
 		};
-		activeChatColor(active);
+		activeChatColor(chatBlock);
 		active = chatBlock;
 	});
 }
+
+// renders the selected chat on the chat box
+function renderChat(){
+	const chatList = document.querySelector('.chat-list-container');
+	chatList.addEventListener("click", (e)=>{
+		const chatBlock = e.target.closest(".chat-log");
+		showSelectedChat(chatBlock.id);
+		// console.log("the id: ", chatBlock.id);
+		// console.log("the div: ", chatBlock);
+	});
+};
+
+// take the message from the prompt box and put it into message box
+function sendMessage(){
+	const sendbtn = document.querySelector('.send');
+	sendbtn.addEventListener("click", ()=> addMessageDiv(active.id));
+};
 
 // helper functions 
 function askname(){
@@ -51,3 +69,5 @@ function askname(){
 matchChatName();
 defaultChat();
 changeColorOfChatBlock();
+renderChat();
+sendMessage();

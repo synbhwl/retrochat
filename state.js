@@ -20,7 +20,7 @@ let chats = [
 		messages: [
 		{
 			role:"bot",
-			content:"Hey, what's up?"
+			content:"Hey man, you good?"
 		}, {
 			role:"user",
 			content: "So, what does the barely dev server do on discord?"
@@ -38,7 +38,7 @@ export function getChats(){
 
 // accessing a certain chat element from the chat list 
 export function getCertainChat(id){
-	return chats.find(chat=> chat.id = id);
+	return chats.find(chat=> chat.id == id);
 }
 
 // adding chat to the list 
@@ -58,9 +58,18 @@ export function addChat(name){
 };
 
 // adding a new message in the certain chat 
-export function addMessage(chatid, message){
-	const chat = getCertainChat(chatid);
-	if (chat) chat.messages.push(message);
+// export function addMessage(chatid, message){
+// 	const chat = getCertainChat(chatid);
+// 	if (chat) chat.messages.push(message);
+// };
+
+// add new message to the list
+export function addMessageToList(id, message){
+	const chat = chats.find(c=> c.id == id);
+	const themsg = {
+		role: "user",
+		message: message
+	}
+	chat.messages.push(themsg);
+	console.log(chat.messages);
 };
-
-
