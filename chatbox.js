@@ -1,4 +1,4 @@
-import {addMessageToList, getCertainChat} from "./state.js"
+import {addMessageToList, getCertainChat, addBotMessageToList} from "./state.js"
 
 //render selected chat into the chatbox
 export function showSelectedChat(id){
@@ -14,7 +14,7 @@ export function showSelectedChat(id){
     }); 
 };
 
-export function addMessageDiv(id){
+export async function addMessageDiv(id){
     const chatBox = document.querySelector(".actual-chat");
     const promptBox = document.querySelector(".prompt-box");
     if (promptBox.value == ""){
@@ -22,9 +22,28 @@ export function addMessageDiv(id){
     } else {
         const messageDiv = document.createElement("div");
         messageDiv.className = "msg";
+        const msg = promptBox.value;
         messageDiv.innerText = promptBox.value;
         chatBox.appendChild(messageDiv);
         addMessageToList(id, messageDiv.innerText);
+
         promptBox.value="";
-    }
+
+        //here starts the backend madness :(
+        const response = await //fetching the response
+        fetch(`http://localhost:3000/chat`, {
+            method: "POST",
+            headers: {"Content-Type":"application/json"},
+            body: JSON.stringify({msg}) //sending the msg 
+        });
+
+        const data = await response.json(); //actually getting the response 
+        const replyDiv = document.createElement('div');
+        replyDiv.className = 'msg';
+        const reply = data.reply;
+        replyDiv.innerText = reply;
+        chatBox.appendChild(replyDiv);
+        addBotMessageToList(id, reply);
+
+    } 
 };
