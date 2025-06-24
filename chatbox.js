@@ -17,8 +17,10 @@ export function showSelectedChat(id){
 export async function addMessageDiv(id){
     const chatBox = document.querySelector(".actual-chat");
     const promptBox = document.querySelector(".prompt-box");
-    if (promptBox.value == ""){
+
+    if (promptBox.value ==""){
         alert("please type something in the prompt box");
+        return;
     } else {
         const messageDiv = document.createElement("div");
         messageDiv.className = "msg";
@@ -29,21 +31,25 @@ export async function addMessageDiv(id){
 
         promptBox.value="";
 
+        const persona = document.querySelector('.personality-box').value;
+        console.log(msg, persona);
+
         //here starts the backend madness :(
-        const response = await //fetching the response
-        fetch(`http://localhost:3000/chat`, {
+        // const response = await
+        fetch("http://localhost:3000/chat", {
             method: "POST",
             headers: {"Content-Type":"application/json"},
-            body: JSON.stringify({msg}) //sending the msg 
+            body: JSON.stringify({message: msg, persona: persona}) 
+        })
+        .then(res => res.json())
+        .then(data => {
+            const replyDiv = document.createElement('div');
+            replyDiv.className = 'msg';
+            const reply = data.reply;
+            replyDiv.innerText = reply;
+            chatBox.appendChild(replyDiv);
+            addBotMessageToList(id, reply);
         });
-
-        const data = await response.json(); //actually getting the response 
-        const replyDiv = document.createElement('div');
-        replyDiv.className = 'msg';
-        const reply = data.reply;
-        replyDiv.innerText = reply;
-        chatBox.appendChild(replyDiv);
-        addBotMessageToList(id, reply);
 
     } 
 };

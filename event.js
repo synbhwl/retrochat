@@ -14,8 +14,13 @@ newbtn.addEventListener("click", clickNew);
 
 // event listener functions 
 // fires when the new button is clicked
+
+// version 2 of this to see if a bug persists
 function clickNew(){
 	const newChatName = askname();
+	if (!newChatName || newChatName==="" || newChatName===null){
+		return;
+	};
 	const chat = addChat(newChatName); 
 	addChatBlock(chat);
 };
