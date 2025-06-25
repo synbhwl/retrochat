@@ -1,4 +1,5 @@
 import {addMessageToList, getCertainChat, addBotMessageToList} from "./state.js"
+import { clearhead } from "./chatheader.js";
 
 //render selected chat into the chatbox
 export function showSelectedChat(id){
@@ -12,6 +13,12 @@ export function showSelectedChat(id){
         messageBlock.innerText = msg.content;
         chatBox.appendChild(messageBlock);
     }); 
+};
+
+export function clearbox(){
+    const chatbox=document.querySelector(".actual-chat");
+    chatbox.textContent="";
+    clearhead();
 };
 
 export async function addMessageDiv(id){
@@ -29,6 +36,13 @@ export async function addMessageDiv(id){
         chatBox.appendChild(messageDiv);
         addMessageToList(id, messageDiv.innerText);
 
+        const loading = document.createElement('div');
+        loading.className = "msg";
+        loading.innerText = "Typing...";
+        loading.style.color = "#000080";
+        loading.id = "true";
+        chatBox.append(loading);
+
         promptBox.value="";
 
         const persona = document.querySelector('.personality-box').value;
@@ -43,12 +57,18 @@ export async function addMessageDiv(id){
         })
         .then(res => res.json())
         .then(data => {
+            const loading = document.getElementById('true');
+            loading.remove();
+
             const replyDiv = document.createElement('div');
             replyDiv.className = 'msg';
             const reply = data.reply;
             replyDiv.innerText = reply;
             chatBox.appendChild(replyDiv);
-            addBotMessageToList(id, reply);
+            addBotMessageToList(id, {
+                role: "bot",
+                content: reply
+            });
         });
 
     } 

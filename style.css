@@ -93,7 +93,9 @@ body {
 	align-items: center;
 	gap:0.25rem;
 }
-
+.mini, .cross{
+	padding: 0.4rem;
+}
 button {
 	display: flex;
 	justify-content: center;
@@ -208,4 +210,29 @@ button:hover{
 
 .chat-log .touched{
 	background-color: #000080;
+}
+
+.clear{
+	width: auto !important;
+	padding: 0.5rem !important;
+	display: none !important;
+}
+
+/* responsiveness */
+@media (max-width: 600px){
+	.chatmenu{
+		display: none;
+	}
+	.chatwindow{
+		width: 100%;
+	}
+	.new-btn{
+		display: none;
+	}
+	.mini, .cross{
+		display: none !important;
+	}
+	.clear{
+		display: flex !important;
+	}
 }

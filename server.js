@@ -69,3 +69,4 @@ app.listen(PORT, ()=>{ //starting the server
     console.log('server is listening');
 });
 
+// module.exports = app;

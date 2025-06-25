@@ -68,7 +68,7 @@ export function addMessageToList(id, message){
 	const chat = chats.find(c=> c.id == id);
 	const themsg = {
 		role: "user",
-		message: message
+		content: message
 	}
 	chat.messages.push(themsg);
 };
@@ -77,7 +77,7 @@ export function addBotMessageToList(id, message){
 	const chat = chats.find(c=> c.id == id);
 	const themsg = {
 		role: 'bot',
-		message: message
+		content: message.content //changed this
 	}
 	chat.messages.push(themsg);
 	console.log(chat.messages);

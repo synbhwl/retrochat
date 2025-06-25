@@ -1,7 +1,7 @@
 import {getChats, getCertainChat, addChat, addMessageToList} from './state.js'
 import {addChatBlock, activeChatColor, inactiveChatColor, defaultChat} from "./chatmenu.js"
 import {chatheader} from "./chatheader.js"
-import {showSelectedChat, addMessageDiv} from "./chatbox.js"
+import {showSelectedChat, addMessageDiv, clearbox} from "./chatbox.js"
 
 // variables initialisation 
 let active = document.querySelector(".default-chat");
@@ -11,6 +11,8 @@ let active = document.querySelector(".default-chat");
 const newbtn = document.querySelector('.new');
 newbtn.addEventListener("click", clickNew);
 
+const clear = document.querySelector('.clear');
+clear.addEventListener("click", clearbox);
 
 // event listener functions 
 // fires when the new button is clicked
