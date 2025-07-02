@@ -4,7 +4,6 @@ RetroChat is a 90s-style chatbot web app that lets users chat with AI personas m
 
 *This project is currently under development and not yet deployed.*
 
----
 
 ## Tech Stack
 
@@ -13,7 +12,6 @@ RetroChat is a 90s-style chatbot web app that lets users chat with AI personas m
 - **Libraries**: Axios, dotenv, CORS
 - **LLM API**: Groq (LLaMA 3 8B 8192)
 
----
 
 ## Features
 
@@ -22,7 +20,6 @@ RetroChat is a 90s-style chatbot web app that lets users chat with AI personas m
 - Chatbot responses mimic each figure’s unique tone and speech style  
 - Retro Windows-inspired UI design
 
----
 
 ## Project Status
 
